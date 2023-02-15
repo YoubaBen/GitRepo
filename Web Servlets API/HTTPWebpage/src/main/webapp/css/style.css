@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800;900&display=swap");
+:root {
+  /* --primary-color: #466feb; */
+  --primary-color: white;
+  --primary-color-lite: rgba(45, 55, 65, 0.25);
+  /* --secondary-color: #06488a; */
+  --primary: #46505a;
+  --input-color: #7c8791;
+  --secondary-color: #6063ea;
+  --btn-primary: #3f51b5;
+  --btn-primary-hover: #1c2a80;
+  --anchor-color: #ffa4ab;
+  --table-hover: rgb(255, 255, 255);
+  --root-bg: rgb(192, 240, 254);
+  --bg: red;
+  --red: #ed1c24;
+  --font_c: #b1b3b6;
+  --tomato: tomato;
+  --my-yellow: #fff200;
+  --light-black: #495057;
+  --font-color: rgb(255, 255, 255);
+  --track-bg: #dcdde1;
+  --lighter-grey: #e8e8e8;
+  --grey: grey;
+  --light-grey: #dcdde1;
+  --white: white;
+  --card-title: #1f1f1f;
+  --color-363636:red;
+  --color-4a4a4a:red;
+  --color-ededfb: #ededfb;
+  --green: green;
+  --question: #ed6824;
+  /* --card-bg: #023066; */
+  
+  --off-white: rgba(255, 255, 255, 0.25);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100% !important;
+  height: 100%;
+  overflow-x: hidden;
+  background: var(--root-bg) !important;
+  font-family: "Barlow", sans-serif !important;
+  scroll-behavior: smooth;
+}
+header {
+  padding: 10px 15px;
+  background-color: var(--primary);
+  color: var(--white);
+  align-items: center;
+}
+.border-radius-15px {
+  border-radius: 15px !important;
+}
+
+
+.wrap-text {
+  line-height: 1em;
+  height: 2em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  max-height: 2em; /* fallback */
+}
+/* custom radio button */
+
+/* The radio-container */
+.radio-container {
+  display: inline-flex;
+  position: relative;
+  padding-left: 35px;
+  margin: 0 15px 12px 5px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: Black;
+  font-weight: bold;
+}
+
+/* Hide the browser's default radio button */
+.radio-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  
+}
+
+/* On mouse-over, add a grey background color */
+.radio-container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.radio-container input:checked ~ .checkmark {
+  background-color: var(--btn-primary-hover);
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.radio-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.radio-container .checkmark:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+/* Search button */
+
+
+.Sbutton button {
+	padding: 5px;
+	background-color: deepskyblue;
+	
+	
+	cursor: pointer;
+	
+}
+
+
+/* end */
+.text-right {
+  text-align: right;
+}
+ 

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Webpage REST</title>
+	<link rel="stylesheet" href="./css/style.css">
+	<!-- font awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+		integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+	<!-- bootstrap cdn -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" />
+	
+</head>
+
+<body>
+	<header class="shadow">
+		<div class="row">
+			<div class="col-6">
+				<h1>Enterprise Programming Assignment</h1>
+			</div>
+			<div class="col-6 text-right">
+				<button type="button" data-bs-toggle="modal" data-bs-target="#InsertModal" id="insertButton" value="Insert Film"
+					class="btn btn-primary mt-2">Add Movie</button>
+			</div>
+			
+		</div>
+		
+		
+		
+		
+	</header>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<div class="row">
+					<div class="col-12">
+						<div class="search-container p-2 mt-4">
+						
+							
+						</div>
+					</div>
+					</div>
+					<div class="col-12">
+					
+						<!-- Searching for all movies or by specific  id , title , year... -->
+					
+	<form id="searchForm">
+						<label class="radio-container">Film
+							<input type="radio" checked id="getAll" value="getAll" name="searchType">
+							<span class="checkmark"></span> 
+						</label>
+						
+						
+					<label  class="radio-container"for="byName">Title 
+					   <input type="radio" name="searchType" id="byName" value="byName" checked>
+					    <span class="checkmark"></span>
+				    </label>
+				    <label  class="radio-container"for="byID">ID 
+					   <input type="radio" name="searchType" id="byID" value="byID" checked>
+					    <span class="checkmark"></span>
+				    </label>
+				    <label  class="radio-container"for="byYear">Year 
+					   <input type="radio" name="searchType" id="byYear" value="byYear" checked>
+					    <span class="checkmark"></span>
+				    </label>
+		         
+						
+					
+						<div class=Sbutton>
+				<input type="text" id="searchParameters" name="fileSearch"
+					placeholder="Search">
+				<button type="button" onclick="search()">
+					<i class="fa fa-search"></i>
+				</button>
+					</div>
+					
+					
+		            
+		            	<h5>Select Format</h5>
+						<select id="format" value="search" class="form-control">
+							<option value="json" selected>JSON</option>
+							<option value="xml">XML</option>
+							<option value="text">Text</option>
+						</select>
+					</form>
+					
+				</div>
+				
+			</div>
+			
+			<div class="col-md-3"></div>
+			<div class="col-12 text-center">
+				<div id="response"></div>
+		  	</div>
+		    </div>
+		
+		
+	         </div>
+	
+	<!-- Adding a new movie  -->
+	<div class="modal fade" id="InsertModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel">Add Film</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p>Please complete this form to add a film</p>
+					<form id="insertForm">
+		
+					<div class="row">
+						<div class="col-12">
+							<label for="filmID"> ID </label>
+							<input  class="form-control" readonly id="filmID" type="number" name="id">
+						</div>
+						<div class="col-12">
+							<label for="filmTitle"> Title </label>
+							<input type="text" class="form-control" placeholder="Film Title.." id="filmTitle"
+							 name="title"	autocomplete="off ">
+						</div>
+						<div class="col-12">
+							<label for="filmYear"> Year </label>
+							<input type="text" class="form-control" placeholder="Film Year.." id="filmYear"
+							 name="year"	autocomplete="off">
+						</div>
+						<div class="col-12">
+							<label for="filmDirector"> Director </label>
+							<input type="text" class="form-control" placeholder="Film Director.." id="filmDirector"
+							name="director"	autocomplete="off">
+						</div>
+						<div class="col-12">
+							<label for="filmStars"> Stars </label>
+							<input type="text" class="form-control" placeholder="Film Stars.." id="filmStars"
+							name="stars"	autocomplete="off">
+						</div>
+						<div class="col-12">
+							<label for="filmReview"> Review </label>
+							<input type="text" class="form-control" placeholder="Film Reviews.." id="filmReview"
+							name="review"	autocomplete="off">
+						</div>
+
+					</div>
+					<div class="row mt-2">
+						<div class="col-6">
+							<button type="button" class="btn btn-danger w-100" id="cancelInsert" data-bs-dismiss="modal">Close</button>
+						</div>
+						<div class="col-6">
+							<button type="submit" class="btn btn-primary w-100" onclick="insertData()">Submit</button>
+						</div>
+						
+					</div>
+				<div class="modalOption">
+					<input type="radio" name="selectFormat" id="json" value="json"><label
+						for="json" class="form_control"> JSON</label> <input
+						type="radio" name="selectFormat" id="xml" value="xml"><label
+						for="xml" class="form_control"> XML</label>
+							</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+		
+	</div>
+	<!-- updating a movie -->
+		
+			<div class="modal" id="updateModal">
+
+		    <div class="modal-content">
+			<span class="click">&times;</span>
+
+			<h1>Updating Movie</h1>
+			<p>Please complete this form to update this  movie</p>
+
+			<hr>
+
+			<form id="updateForm">
+			
+			<div class="row">
+						<div class="col-12">
+							<label for="filmID"> ID </label>
+							<input  class="form-control" readonly id="newFilmID" type="number" name="id">
+						</div>
+						<div class="col-12">
+							<label for="filmTitle"> Title </label>
+							<input type="text" class="form-control" placeholder="Film Title.." id="newFilmTitle"
+							 name="title"	autocomplete="off ">
+						</div>
+						<div class="col-12">
+							<label for="filmYear"> Year </label>
+							<input type="text" class="form-control" placeholder="Film Year.." id="newFilmYear"
+							 name="year"	autocomplete="off">
+						</div>
+						<div class="col-12">
+							<label for="filmDirector"> Director </label>
+							<input type="text" class="form-control" placeholder="Film Director.." id="newFilmDirector"
+							name="director"	autocomplete="off">
+						</div>
+						<div class="col-12">
+							<label for="filmStars"> Stars </label>
+							<input type="text" class="form-control" placeholder="Film Stars.." id="newFilmStars"
+							name="stars"	autocomplete="off">
+						</div>
+						<div class="col-12">
+							<label for="newFilmReview"> Review </label>
+							<input type="text" class="form-control" placeholder="Film Reviews.." id="filmReview"
+							name="review"	autocomplete="off">
+							</div>
+					<div class="row mt-2">
+						<div class="col-6">
+							<button type="button" class="btn btn-danger w-100" data-bs-dismiss="modal"
+							id="cancelInsert">Close</button>
+							 
+						</div>
+						<div class="col-6">
+							<button type="submit" class="btn btn-primary w-100" onclick="sendUpdateData()">Update</button>
+						</div>
+					</div>
+			
+				</div>
+               	<div class="modalOption">
+					<input type="radio" name="selectFormat" id="json" value="json"><label
+						class="form_control" for="json">  JSON</label> <input
+						type="radio" name="selectFormat" id="xml" value="xml"><label
+						class="form_control" for="xml">  XML</label>
+						</div>
+				
+			  </form>
+				</div>
+				
+	</div>
+	
+
+	<script src="scripts/jquery.js"></script>
+	<script src="scripts/ajax.js"></script>
+	<script src="scripts/modalScript.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
