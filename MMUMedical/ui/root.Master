@@ -1,0 +1,287 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="root.master.cs" Inherits="MMUMedical.ui.root" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head runat="server">
+    <title>MMU Medical</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Welcome to Responsive Web Design" />
+    <meta name="author" content="Responsive Web Design" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/URL/heartbeat.png" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" />
+    <link href="../URL/font-awesome.min.css" rel="stylesheet" />
+    <link href="../URL/dist/css/style.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <main>
+            <div id="app" class="has-alert">
+                <header id="header-wrapper">
+                    <%-- top header , most of them are dummy data to make the website more " pretty" --%>
+                    <div class="row">
+                        <div class="medium-6 columns">
+                            <h6><a href="/ui/home.aspx">
+                                <img alt="" src="/URL/heartbeat.png" class="web-logo" /></a></h6>
+                        </div>
+
+                        <div class="medium-6 columns">
+                            <h2 style="text-align: center;"><i aria-hidden="true" class="fa fa-home">&nbsp;</i><strong><a
+                                href="/ui/home.aspx" target="_blank">MMU Medical</a></strong>
+                            </h2>
+
+                            <h3 style="text-align: center;"><i aria-hidden="true" class="fa fa-phone">&nbsp;</i><a
+                                href="tel:0161 247 1334">0161 247 1334</a></h3>
+
+                            <h6 style="text-align: center;"><i aria-hidden="true" class="fa fa-clock-o">&nbsp;</i><a
+                                href="/ui/home.aspx" target="_blank">Opening Times</a> | <i
+                                    aria-hidden="true" class="fa fa-moon-o">&nbsp;</i><a
+                                        href="/ui/home.aspx" target="_blank">Out of Hours</a></h6>
+
+                            <h6 style="text-align: center;"><i aria-hidden="true" class="fa fa-calendar">&nbsp;</i> <a
+                                href="/ui/home.aspx" target="_blank">Appointments</a> | <i
+                                    aria-hidden="true" class="fa fa-file-text-o">&nbsp;</i> <a
+                                        href="/ui/home.aspx" target="_blank">Prescriptions</a></h6>
+
+                            <h6 style="text-align: center;"><i aria-hidden="true" class="fa fa-star-o">&nbsp;</i><a
+                                href="/ui/register.aspx" target="_blank">New
+                                Registration</a> | <i aria-hidden="true" class="fa fa-paper-plane-o">&nbsp;</i><a
+                                    href="/ui/register.aspx" target="_blank">Online Forms</a></h6>
+                        </div>
+                    </div>
+                    <%-- header menu --%>
+                    <div id="navigation-wrapper">
+                        <div class="row">
+                            <div class="large-4 small-12 columns">
+                                <div id="accessibility" class="">
+                                    <div>
+                                        <div id="font-size">
+                                            <span>FONT SIZE:</span>
+                                            <%HttpCookie cookie = HttpContext.Current.Request.Cookies["font"]; %>
+                                            <asp:LinkButton ID="lnkSmall" class="sm-active" OnClick="lnkSmall_OnClick" runat="server">S</asp:LinkButton>
+                                            <asp:LinkButton ID="lnkMedium" class="md-active" runat="server" OnClick="lnkMedium_OnClick">M</asp:LinkButton>
+                                            <asp:LinkButton ID="lnkLarge" class="lg-active" runat="server" OnClick="lnkLarge_OnClick">L</asp:LinkButton>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="large-8 small-12 columns">
+                                <div id="navigation" aria-label="Main navigation">
+                                    <div class="triggers">
+                                        <!---->
+                                        <div class="menu"><span class="fa fa-bars"></span></div>
+                                    </div>
+                                    <ul class="items show-for-large navmenubar">
+                                        <!---->
+                                        <!---->
+                                        <li><a href="/ui/home.aspx">HOME</a></li>
+                                        <li><a href="/ui/covid-info.aspx">Covid Information</a></li>
+                                        <!---->
+                                        <!---->
+                                        <li><a href="/ui/about-us.aspx">About Us</a></li>
+                                        <!---->
+                                        <!---->
+                                        <li><a href="/ui/contact.aspx">Contact Us</a></li>
+                                        <!---->
+                                        <!---->
+                                        <%
+                                            HttpCookie data = HttpContext.Current.Request.Cookies["general"];
+                                            if (data == null)
+                                            {
+
+                                        %>
+                                        <li><a href="/ui/login.aspx">Sign in</a></li>
+                                        <li><a href="/ui/register.aspx">Register</a></li>
+
+                                        <% }
+                                            else
+                                            { %>
+                                        <li><a href="#">
+                                            <img src="/URL/users.png" onclick="myFunction()" class="dropbtn" alt="user image" style="width: 35px; position: relative; top: 8px;" />
+                                        </a>
+                                            <div id="myDropdown" class="dropdown-content">
+                                                <a id="logout" runat="server" onserverclick="logout_OnServerClick">Log Out</a>
+                                            </div>
+                                        </li>
+                                        <% } %>
+
+                                        <!---->
+                                        <!---->
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </header>
+                <%-- main body --%>
+                <div class="wrapper white" style="padding-top: 0 !important;">
+                    <div class="row" style="min-height: 70vh !important;">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </div>
+                <%-- footer --%>
+                <footer id="footer">
+                    <div class="row tac">
+                        <div class="column">
+                        </div>
+                    </div>
+                </footer>
+                <span class="scrollToTop"><span class="fa fa-arrow-up"></span></span>
+            </div>
+        </main>
+
+    </form>
+    <% HttpCookie cookie = HttpContext.Current.Request.Cookies["font"];
+        int f = 0;
+        if (cookie == null)
+        {
+            f = 0;
+        }
+        else if (cookie["size"].ToString() == "s")
+        {
+            f = 0;
+        }
+        else if (cookie["size"].ToString() == "m")
+        {
+            f = 1;
+        }
+        else if (cookie["size"].ToString() == "l")
+        {
+            f = 2;
+        }
+        if (f == 0)
+        { %>
+    <style>
+        .font-size {
+            font-size: 16px;
+        }
+
+        .sm-active {
+            font-weight: bold;
+        }
+    </style>
+    <% }
+        else if (f == 1)
+        {
+    %>
+    <style>
+        .font-size {
+            font-size: 20px;
+        }
+
+        .md-active {
+            font-weight: bold;
+        }
+    </style>
+    <% }
+        else if (f == 2)
+        {
+    %>
+    <style>
+        .font-size {
+            font-size: 24px;
+        }
+
+        .lg-active {
+            font-weight: bold;
+        }
+    </style>
+    <% } %>
+    <style>
+        .dropbtn {
+            border: none;
+            cursor: pointer;
+        }
+
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            overflow: auto;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 11111111111;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px !important;
+                text-decoration: none;
+                display: block;
+            }
+
+        .dropdown a:hover {
+            background-color: #ddd;
+        }
+
+        .show {
+            display: block;
+        }
+
+        .active {
+            font-weight: bold;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+
+    <script>
+        $('.menu').click(function () {
+            $('.triggers').toggleClass('expanded');
+            $('.items').toggleClass('show-for-large');
+        })
+    </script>
+    <script>
+        /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+        $(function () {
+            CheckActive();
+        });
+        function CheckActive() {
+            var current = location.pathname;
+            $('.navmenubar li a').each(function () {
+                var $this = $(this);
+                console.log($this.attr('href'));
+                // if the current path is identical to  this link,then  make it active
+                if ($this.attr('href') === current) {
+                    $this.addClass('active');
+                }
+            })
+        }
+    </script>
+
+</body>
+</html>
